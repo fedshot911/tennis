@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>나에게 맞는 라켓 찾기 | fedshot911 tennis</title>
+  <meta name="description" content="테니스 성향에 맞는 라켓을 추천하는 fedshot911 tennis 라켓 파인더입니다.">
+  <meta name="kakao-js-key" content="f59ee13c8ba96eb90f166f1553710a6a">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="fedshot911 tennis">
+  <meta property="og:title" content="나에게 맞는 라켓 찾기">
+  <meta property="og:description" content="플레이 성향, 스윙 느낌, 장비 취향을 보고 지금 가장 잘 맞는 라켓 하나를 골라드릴게요.">
+  <meta property="og:url" content="https://tennis.fedshot911.com/racket-finder/">
+  <meta property="og:image" content="https://tennis.fedshot911.com/assets/share-previews/v1.0.0/racket-finder-og-v1.0.0.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="나에게 맞는 라켓 찾기">
+  <meta name="twitter:description" content="플레이 성향, 스윙 느낌, 장비 취향을 보고 지금 가장 잘 맞는 라켓 하나를 골라드릴게요.">
+  <meta name="twitter:image" content="https://tennis.fedshot911.com/assets/share-previews/v1.0.0/racket-finder-og-v1.0.0.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/app-icons/v2.0.0/fedshot911-apple-touch-icon-180-v2.0.0.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#0b0d0f">
+  <link rel="stylesheet" href="/styles.v1.1.1.css">
+  <link rel="stylesheet" href="./racket-finder.v1.1.6.css?260618">
+</head>
+<body>
+  <header class="service-header">
+    <a class="brand" href="../index.html" aria-label="fedshot911 tennis home">
+      <img class="brand-mark" src="/assets/app-icons/v2.0.0/fedshot911-brand-mark-48-v2.0.0.png" alt="" aria-hidden="true">
+      <img class="brand-wordmark" src="/assets/app-icons/v2.0.0/fedshot911-wordmark-v2.0.0.png" alt="fedshot911">
+    </a>
+    <span class="service-label">Tennis · Racket Finder</span>
+  </header>
+  <main class="finder-shell">
+    <section class="finder-hero" aria-labelledby="page-title">
+      <div class="finder-copy">
+        <p class="finder-kicker">Racket Finder</p>
+        <h1 id="page-title">나에게 맞는 라켓 찾기</h1>
+        <p class="finder-lead">
+          라켓 고르기, 생각보다 취향 많이 탑니다.
+          예쁜 거 샀다가 팔이 먼저 퇴근할 수도 있으니까요.
+        </p>
+      </div>
+      <div class="finder-intro-card" id="introCard">
+        <p class="intro-label">9문항 · 약 1분</p>
+        <h2>대충 고르면 팔이 먼저 퇴근합니다.</h2>
+        <p>
+          플레이 성향, 스윙 느낌, 장비 취향을 보고 지금 가장 잘 맞는 라켓 하나를 골라드릴게요.
+        </p>
+        <button class="finder-button primary-action" type="button" id="startButton">
+          내 라켓 찾기
+        </button>
+      </div>
+    </section>
+
+    <section class="quiz-layout is-hidden" id="quizSection" aria-live="polite">
+      <div class="quiz-status">
+        <span id="questionCounter">1 / 9</span>
+        <span id="answeredCounter">답변 0개</span>
+      </div>
+      <div class="progress-track" aria-hidden="true">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+
+      <article class="question-panel">
+        <p class="question-purpose" id="questionPurpose"></p>
+        <h2 id="questionTitle">질문을 불러오는 중</h2>
+        <div class="answer-grid" id="answerGrid"></div>
+      </article>
+
+      <div class="quiz-actions">
+        <button class="finder-button secondary-action" type="button" id="prevButton">이전</button>
+        <button class="finder-button secondary-action" type="button" id="restartButton">처음부터</button>
+      </div>
+    </section>
+
+    <section class="result-layout is-hidden" id="resultSection" aria-live="polite">
+      <div class="result-visual">
+        <img id="heroImage" alt="" loading="eager">
+      </div>
+
+      <article class="result-panel">
+        <p class="result-label">추천 라켓</p>
+        <h2 id="resultTitle">추천 결과를 불러오는 중</h2>
+        <p id="resultSummary" class="result-summary"></p>
+
+        <div class="racket-card">
+          <img id="productImage" alt="" loading="eager">
+          <div>
+            <p class="racket-brand" id="racketBrand"></p>
+            <h3 id="racketName"></h3>
+            <p id="resultReason"></p>
+          </div>
+        </div>
+
+        <dl class="spec-grid">
+          <div>
+            <dt>헤드</dt>
+            <dd id="headSize"></dd>
+          </div>
+          <div>
+            <dt>무게</dt>
+            <dd id="weight"></dd>
+          </div>
+          <div>
+            <dt>스타일</dt>
+            <dd id="styleTags"></dd>
+          </div>
+          <div>
+            <dt>주의</dt>
+            <dd id="caution"></dd>
+          </div>
+        </dl>
+
+        <div class="player-context">
+          <span>관련 선수</span>
+          <strong id="playerContext"></strong>
+          <p id="playerNote"></p>
+        </div>
+
+        <div class="result-actions">
+          <button class="finder-button primary-action" type="button" disabled>구매 링크 준비 중</button>
+          <button class="finder-button kakao-action" type="button" id="kakaoShareButton">카카오톡 공유</button>
+          <button class="finder-button secondary-action" type="button" id="shareButton">링크 복사</button>
+          <button class="finder-button secondary-action" type="button" id="retryButton">다시 하기</button>
+        </div>
+      </article>
+    </section>
+
+    <section class="finder-guide-grid" aria-label="라켓 추천 기준">
+      <article>
+        <p class="guide-label">How it works</p>
+        <h2>추천 기준</h2>
+        <p>
+          답변은 파워, 컨트롤, 스핀, 편안함, 조작성처럼 라켓을 고를 때 실제로 갈리는 기준으로
+          나눠 계산합니다. 결과는 하나의 정답이 아니라, 지금 성향에서 먼저 시타해볼 만한
+          후보를 좁히는 용도입니다.
+        </p>
+      </article>
+      <article>
+        <p class="guide-label">Before buying</p>
+        <h2>구매 전 확인</h2>
+        <p>
+          손목이나 팔꿈치가 예민하다면 무게와 강성, 스트링 세팅을 함께 봐야 합니다. 추천 결과가
+          마음에 들어도 가능하면 같은 모델을 직접 쳐보고, 부담이 있으면 더 편한 스펙을 우선하세요.
+        </p>
+      </article>
+      <article>
+        <p class="guide-label">Data</p>
+        <h2>저장되는 것</h2>
+        <p>
+          결과 저장은 이름이나 연락처 없이 답변 조합, 추천 라켓, 공유 횟수처럼 서비스 개선에
+          필요한 익명 정보 중심으로만 다룹니다. 자세한 내용은 Privacy 페이지에 정리했습니다.
+        </p>
+      </article>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <span>fedshot911 tennis</span>
+    <span>
+      <a href="../privacy/index.html">Privacy</a> ·
+      <a href="../contact/index.html">Contact</a>
+    </span>
+  </footer>
+  <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.8.1/kakao.min.js" integrity="sha384-OL+ylM/iuPLtW5U3XcvLSGhE8JzReKDank5InqlHGWPhb4140/yrBw0bg0y7+C9J" crossorigin="anonymous" defer></script>
+  <script src="./racket-finder.v1.1.5.js?260618" defer></script>
+</body>
+</html>

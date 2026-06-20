@@ -1,0 +1,22 @@
+{
+  "name": "fedshot911 tennis",
+  "short_name": "fedshot911 tennis",
+  "description": "Tennis tools and racket finder by fedshot911.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0b0d0f",
+  "theme_color": "#0b0d0f",
+  "icons": [
+    {
+      "src": "/assets/app-icons/v2.0.0/fedshot911-web-app-icon-192-v2.0.0.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/app-icons/v2.0.0/fedshot911-web-app-icon-512-v2.0.0.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

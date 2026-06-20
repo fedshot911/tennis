@@ -1,0 +1,467 @@
+{
+  "version": "v1.1.1",
+  "created_at": "2026-06-03",
+  "quiz_id": "racket_finder",
+  "racket_data_file": "/assets/data/rackets.v1.1.0.json",
+  "question_data_file": "/assets/data/quiz-questions.v1.1.1.json",
+  "scoring_model": {
+    "summary": "각 답변의 tag_scores를 라켓 recommendation_tags와 매칭해 점수를 합산하고, racket_boosts와 penalties를 반영한 뒤 priority_rank로 최종 1개를 고른다.",
+    "score_sources": [
+      "tag_scores",
+      "racket_boosts",
+      "penalties"
+    ],
+    "tie_break_order": [
+      "highest_total_score",
+      "highest_direct_boost_score",
+      "q9_final_tie_breaker_match",
+      "q8_buying_attitude_match",
+      "higher_confidence",
+      "lower_priority_rank"
+    ],
+    "confidence_rank": {
+      "high": 3,
+      "medium": 2,
+      "low": 1
+    }
+  },
+  "answer_rules": {
+    "q2_experience": {
+      "just_started": {
+        "tag_scores": {
+          "starter": 4,
+          "easy": 3,
+          "lightweight": 3,
+          "comfort": 2,
+          "forgiving": 2
+        },
+        "penalties": {
+          "advanced": -4,
+          "heavy": -3,
+          "small_head": -3
+        }
+      },
+      "getting_hooked": {
+        "tag_scores": {
+          "easy": 2,
+          "forgiving": 2,
+          "popular": 2,
+          "all_court": 1,
+          "comfort": 1
+        }
+      },
+      "gear_excuse_ready": {
+        "tag_scores": {
+          "intermediate": 2,
+          "all_court": 2,
+          "control": 2,
+          "power": 1,
+          "spin": 1
+        }
+      },
+      "spec_heart_rate": {
+        "tag_scores": {
+          "advanced": 3,
+          "gear_nerd": 3,
+          "small_head": 2,
+          "precision": 2,
+          "premium": 2
+        }
+      }
+    },
+    "q3_play_style": {
+      "just_keep_it_in": {
+        "tag_scores": {
+          "stable": 3,
+          "control": 2,
+          "comfort": 2,
+          "all_court": 1,
+          "forgiving": 1
+        }
+      },
+      "attack_on_chance": {
+        "tag_scores": {
+          "attack": 3,
+          "power": 3,
+          "baseline": 2,
+          "easy_power": 2
+        }
+      },
+      "topspin_happy": {
+        "tag_scores": {
+          "spin": 4,
+          "spin_control": 3,
+          "baseline": 2,
+          "red": 1
+        }
+      },
+      "course_over_power": {
+        "tag_scores": {
+          "control": 4,
+          "precision": 3,
+          "feel": 2,
+          "classic": 1
+        }
+      }
+    },
+    "q4_impact_feel": {
+      "free_depth": {
+        "tag_scores": {
+          "power": 4,
+          "easy_power": 3,
+          "baseline": 2,
+          "blue": 1
+        }
+      },
+      "pocketing_feel": {
+        "tag_scores": {
+          "feel": 4,
+          "comfort": 2,
+          "control": 2,
+          "classic": 1
+        }
+      },
+      "spin_drops_in": {
+        "tag_scores": {
+          "spin": 4,
+          "spin_control": 3,
+          "precision": 1
+        }
+      },
+      "target_hit": {
+        "tag_scores": {
+          "control": 4,
+          "precision": 3,
+          "all_court": 1
+        }
+      }
+    },
+    "q5_swing": {
+      "careful_contact_first": {
+        "tag_scores": {
+          "starter": 4,
+          "easy": 3,
+          "lightweight": 3,
+          "forgiving": 2
+        },
+        "penalties": {
+          "advanced": -4,
+          "small_head": -3,
+          "heavy": -3
+        }
+      },
+      "compact_fast": {
+        "tag_scores": {
+          "easy": 2,
+          "balanced": 2,
+          "all_court": 2,
+          "control": 1
+        }
+      },
+      "full_swing_stress_out": {
+        "tag_scores": {
+          "power": 3,
+          "baseline": 3,
+          "attack": 2,
+          "spin": 1
+        }
+      },
+      "brushing_spin": {
+        "tag_scores": {
+          "spin": 4,
+          "spin_control": 3,
+          "baseline": 2,
+          "precision": 1
+        }
+      }
+    },
+    "q6_racket_preference": {
+      "light_and_easy": {
+        "tag_scores": {
+          "lightweight": 4,
+          "easy": 3,
+          "starter": 2,
+          "comfort": 2
+        },
+        "penalties": {
+          "heavy": -4,
+          "advanced": -2
+        }
+      },
+      "solid_weight": {
+        "tag_scores": {
+          "heavy": 4,
+          "advanced": 2,
+          "stable": 2,
+          "premium": 1
+        },
+        "penalties": {
+          "lightweight": -2
+        }
+      },
+      "feel_is_real": {
+        "tag_scores": {
+          "feel": 4,
+          "control": 3,
+          "classic": 2,
+          "precision": 2
+        }
+      },
+      "easy_power_mood": {
+        "tag_scores": {
+          "easy_power": 4,
+          "power": 3,
+          "forgiving": 2,
+          "blue": 1
+        }
+      }
+    },
+    "q7_arm_condition": {
+      "arm_ok_for_now": {
+        "tag_scores": {
+          "power": 1,
+          "advanced": 1,
+          "premium": 1
+        }
+      },
+      "arm_talks_later": {
+        "tag_scores": {
+          "comfort": 3,
+          "arm_friendly": 3,
+          "stable": 1
+        },
+        "penalties": {
+          "heavy": -2,
+          "advanced": -1
+        }
+      },
+      "stiff_racket_scary": {
+        "tag_scores": {
+          "comfort": 4,
+          "arm_friendly": 4,
+          "forgiving": 2,
+          "easy": 1
+        },
+        "penalties": {
+          "heavy": -3,
+          "small_head": -2
+        }
+      },
+      "comfort_first": {
+        "tag_scores": {
+          "comfort": 5,
+          "arm_friendly": 5,
+          "easy": 2,
+          "forgiving": 2
+        },
+        "racket_boosts": {
+          "wilson_clash_100_v3": 3,
+          "yonex_percept_100": 2,
+          "head_gravity_mp_2025": 2
+        },
+        "penalties": {
+          "heavy": -4,
+          "small_head": -3,
+          "advanced": -2
+        }
+      }
+    },
+    "q8_buying_attitude": {
+      "trusted_pick": {
+        "tag_scores": {
+          "popular": 4,
+          "easy": 1,
+          "forgiving": 1
+        },
+        "penalties": {
+          "non_mainstream": -2
+        },
+        "racket_boosts": {
+          "babolat_pure_drive_2025": 2,
+          "babolat_pure_aero_2026": 2,
+          "yonex_ezone_100_2025": 2,
+          "head_speed_mp_2026": 1,
+          "wilson_blade_100_v10": 1
+        }
+      },
+      "player_effect": {
+        "tag_scores": {
+          "popular": 2,
+          "classic": 2,
+          "premium": 2,
+          "spin": 1,
+          "all_court": 1
+        },
+        "racket_boosts": {
+          "wilson_rf_01": 3,
+          "wilson_rf_01_pro": 3,
+          "babolat_pure_aero_2026": 2,
+          "head_speed_mp_2026": 2
+        }
+      },
+      "premium_ok": {
+        "tag_scores": {
+          "premium": 5,
+          "advanced": 2,
+          "classic": 1,
+          "precision": 1
+        },
+        "racket_boosts": {
+          "wilson_rf_01_pro": 4,
+          "wilson_rf_01": 3,
+          "babolat_pure_aero_98_2026": 2,
+          "tecnifibre_t_fight_305s_2025": 2
+        }
+      },
+      "unique_pick": {
+        "tag_scores": {
+          "non_mainstream": 5,
+          "gear_nerd": 4,
+          "classic": 1
+        },
+        "penalties": {
+          "popular": -2
+        },
+        "racket_boosts": {
+          "tecnifibre_t_fight_305s_2025": 4,
+          "dunlop_cx_200_2025": 4,
+          "yonex_vcore_95_2026": 2
+        }
+      },
+      "budget_sensitive": {
+        "tag_scores": {
+          "starter": 3,
+          "easy": 2,
+          "lightweight": 2,
+          "popular": 1
+        },
+        "penalties": {
+          "premium": -4,
+          "heavy": -2,
+          "advanced": -1
+        },
+        "racket_boosts": {
+          "wilson_blade_100l_v10": 3,
+          "wilson_clash_100_v3": 1
+        }
+      }
+    },
+    "q9_racket_vibe": {
+      "wilson_rf_classic": {
+        "tag_scores": {
+          "classic": 4,
+          "premium": 3,
+          "all_court": 2,
+          "control": 1
+        },
+        "racket_boosts": {
+          "wilson_rf_01": 5,
+          "wilson_rf_01_pro": 4,
+          "wilson_pro_staff_97": 3,
+          "wilson_blade_100_v10": 1
+        }
+      },
+      "babolat_spin_energy": {
+        "tag_scores": {
+          "spin": 5,
+          "attack": 3,
+          "baseline": 2,
+          "popular": 1
+        },
+        "racket_boosts": {
+          "babolat_pure_aero_2026": 5,
+          "babolat_pure_aero_98_2026": 4,
+          "babolat_pure_drive_2025": 1
+        }
+      },
+      "yonex_clean_balance": {
+        "tag_scores": {
+          "balanced": 3,
+          "comfort": 2,
+          "control": 2,
+          "forgiving": 2,
+          "blue": 1
+        },
+        "racket_boosts": {
+          "yonex_ezone_100_2025": 4,
+          "yonex_percept_100": 3,
+          "yonex_vcore_100_2026": 2,
+          "yonex_percept_97": 1
+        }
+      },
+      "head_stable_wall": {
+        "tag_scores": {
+          "stable": 5,
+          "all_court": 3,
+          "balanced": 2,
+          "control": 1
+        },
+        "racket_boosts": {
+          "head_speed_mp_2026": 5,
+          "head_gravity_mp_2025": 4
+        }
+      },
+      "fit_over_brand": {
+        "tag_scores": {
+          "all_court": 2,
+          "control": 1,
+          "comfort": 1,
+          "power": 1,
+          "spin": 1,
+          "spin_control": 2,
+          "modern": 3
+        },
+        "racket_boosts": {
+          "wilson_shift_99": 4
+        }
+      },
+      "avoid_mainstream": {
+        "tag_scores": {
+          "non_mainstream": 5,
+          "gear_nerd": 4,
+          "classic": 1
+        },
+        "penalties": {
+          "popular": -3
+        },
+        "racket_boosts": {
+          "tecnifibre_t_fight_305s_2025": 5,
+          "dunlop_cx_200_2025": 5,
+          "yonex_vcore_95_2026": 3
+        }
+      }
+    }
+  },
+  "racket_priority_rank": {
+    "wilson_clash_100_v3": 10,
+    "wilson_blade_100l_v10": 20,
+    "yonex_ezone_100_2025": 30,
+    "babolat_pure_drive_2025": 40,
+    "babolat_pure_aero_2026": 50,
+    "yonex_vcore_100_2026": 60,
+    "head_speed_mp_2026": 70,
+    "head_gravity_mp_2025": 80,
+    "yonex_percept_100": 90,
+    "wilson_blade_100_v10": 100,
+    "wilson_ultra_100_v5": 110,
+    "wilson_shift_99": 120,
+    "wilson_rf_01": 130,
+    "babolat_pure_aero_98_2026": 140,
+    "yonex_percept_97": 150,
+    "wilson_pro_staff_97": 160,
+    "wilson_rf_01_pro": 170,
+    "yonex_vcore_95_2026": 180,
+    "tecnifibre_t_fight_305s_2025": 190,
+    "dunlop_cx_200_2025": 200
+  },
+  "result_image_selection": {
+    "male_visual": "result_image_male_path",
+    "female_visual": "result_image_female_path"
+  },
+  "implementation_notes": [
+    "q1_visual_gender is not scored. It only selects the result image variant.",
+    "Questions q8 and q9 intentionally have direct racket_boosts because they are final narrowing questions.",
+    "If all scores tie unexpectedly, choose the lowest racket_priority_rank among active rackets.",
+    "This rules file does not store personal data."
+  ]
+}
