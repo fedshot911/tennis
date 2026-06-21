@@ -822,369 +822,199 @@ h2 {
   font-weight: 700;
 }
 
-.tennis-hero {
-  position: relative;
+.tennis-ecosystem {
+  width: min(90rem, 90vw);
+  margin: 0 auto;
+  padding: clamp(4rem, 8vw, 7rem) 0 clamp(3rem, 6vw, 5rem);
+}
+
+.ecosystem-intro {
   display: grid;
-  grid-template-columns: minmax(0, 0.92fr) minmax(23rem, 1.08fr);
-  align-items: center;
-  gap: clamp(2.5rem, 6vw, 6rem);
-  min-height: auto;
-  padding: clamp(4rem, 8vw, 7rem) 5vw clamp(3rem, 6vw, 5rem);
+  grid-template-columns: minmax(0, 1.3fr) minmax(18rem, 0.7fr);
+  gap: clamp(2rem, 6vw, 6rem);
+  align-items: end;
+  margin-bottom: clamp(2.5rem, 5vw, 4.5rem);
 }
 
-.tennis-hero::before {
-  content: "";
-  position: absolute;
-  inset: auto -8vw 8% auto;
-  width: min(42vw, 36rem);
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: var(--tennis-yellow);
-  opacity: 0.72;
-  filter: blur(0.2px);
-  z-index: -1;
-}
-
-.tennis-hero-copy h2 {
+.ecosystem-intro h2 {
   max-width: 12ch;
-  margin-bottom: 1.35rem;
+  margin: 0;
   color: var(--tennis-ink);
-  font-size: clamp(3.6rem, 8.4vw, 7.4rem);
-  line-height: 0.92;
+  font-size: clamp(3.6rem, 7vw, 7.8rem);
+  line-height: 0.9;
+}
+
+.ecosystem-intro-copy {
+  max-width: 31rem;
+}
+
+.ecosystem-intro-copy p {
+  margin: 0;
+  color: var(--tennis-muted);
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  font-weight: 700;
+  line-height: 1.55;
   word-break: keep-all;
 }
 
-.tennis-hero-copy p {
-  max-width: 38rem;
-  margin-bottom: 0;
-  color: var(--tennis-muted);
-  font-size: clamp(1.05rem, 1.55vw, 1.28rem);
-  font-weight: 650;
-}
-
-.tennis-hero-actions {
+.ecosystem-legend {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem;
-  margin-top: 2rem;
+  gap: 0.55rem 1rem;
+  margin-top: 1.5rem;
+  color: var(--tennis-muted);
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-transform: uppercase;
 }
 
-.tennis-button {
+.ecosystem-legend span,
+.ecosystem-status {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  min-height: 52px;
-  padding: 0 1.3rem;
-  border-radius: 999px;
-  text-decoration: none;
-  font-weight: 900;
+  gap: 0.42rem;
 }
 
-.tennis-button.primary {
-  background: var(--tennis-green);
-  color: #fff;
-  box-shadow: 0 16px 28px rgba(15, 111, 67, 0.22);
+.ecosystem-dot {
+  flex: 0 0 auto;
+  width: 0.62rem;
+  height: 0.62rem;
+  border-radius: 50%;
 }
 
-.tennis-button.secondary {
-  border: 1px solid var(--tennis-line);
-  background: #fff;
-  color: var(--tennis-ink);
-}
-
-.tennis-hero-visual {
-  position: relative;
-  min-height: clamp(29rem, 46vw, 41rem);
-  border: 1px solid rgba(16, 20, 20, 0.14);
-  border-radius: 8px;
-  background:
-    linear-gradient(135deg, rgba(207, 255, 63, 0.94), rgba(51, 167, 216, 0.7)),
-    #eaffd7;
-  box-shadow: 0 28px 80px rgba(16, 20, 20, 0.18);
-  overflow: hidden;
-}
-
-.court-lines {
-  position: absolute;
-  inset: 1.5rem;
-  border: 3px solid rgba(255, 255, 255, 0.72);
-  border-radius: 6px;
-}
-
-.court-lines span {
-  position: absolute;
-  background: rgba(255, 255, 255, 0.72);
-}
-
-.court-lines span:nth-child(1) {
-  top: 50%;
-  left: 0;
-  width: 100%;
-  height: 3px;
-}
-
-.court-lines span:nth-child(2) {
-  top: 0;
-  left: 50%;
-  width: 3px;
-  height: 100%;
-}
-
-.court-lines span:nth-child(3) {
-  top: 18%;
-  left: 18%;
-  width: 64%;
-  height: 64%;
-  border: 3px solid rgba(255, 255, 255, 0.72);
-  background: transparent;
-}
-
-.tennis-hero-visual::before,
-.tennis-hero-visual::after {
-  content: "";
-  position: absolute;
-  border: 4px solid var(--tennis-ink);
-  border-radius: 999px;
-}
-
-.tennis-hero-visual::before {
-  right: -3.2rem;
-  top: 2rem;
-  width: 16rem;
-  height: 9rem;
-  transform: rotate(-24deg);
-}
-
-.tennis-hero-visual::after {
-  right: 4.5rem;
-  top: 11rem;
-  width: 4px;
-  height: 12rem;
-  border-width: 0;
-  border-radius: 0;
-  background: var(--tennis-ink);
-  transform: rotate(-24deg);
-}
-
-.quiz-preview {
-  position: absolute;
-  left: clamp(1rem, 4vw, 3rem);
-  right: clamp(1rem, 4vw, 3rem);
-  bottom: clamp(1rem, 4vw, 3rem);
-  padding: clamp(1rem, 2.4vw, 1.4rem);
-  border: 1px solid rgba(16, 20, 20, 0.14);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 24px 48px rgba(16, 20, 20, 0.16);
-  backdrop-filter: blur(16px);
-}
-
-.quiz-preview-header {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 1rem;
-  color: var(--tennis-muted);
-  font-size: 0.78rem;
-  font-weight: 900;
-  text-transform: uppercase;
-}
-
-.quiz-preview-header strong {
-  color: var(--tennis-green);
-}
-
-.quiz-meter {
-  display: grid;
-  gap: 0.65rem;
-  margin-bottom: 1rem;
-}
-
-.quiz-meter span {
-  position: relative;
-  display: flex;
-  align-items: center;
-  min-height: 34px;
-  padding-left: 0.85rem;
-  border-radius: 999px;
-  background: linear-gradient(90deg, var(--bar-color, var(--tennis-green)) var(--value), #e8eee7 var(--value));
-  color: #fff;
-  font-size: 0.78rem;
-  font-weight: 900;
-  overflow: hidden;
-}
-
-.quiz-meter span:nth-child(2) {
-  --bar-color: var(--tennis-blue);
-}
-
-.quiz-meter span:nth-child(3) {
-  --bar-color: var(--tennis-purple);
-}
-
-.quiz-meter span:nth-child(4) {
-  --bar-color: #242826;
-}
-
-.quiz-meter span {
-  text-shadow: 0 1px 1px rgba(16, 20, 20, 0.18);
-}
-
-.result-mini-card {
-  display: grid;
-  grid-template-columns: minmax(5.8rem, 8rem) minmax(0, 1fr);
-  gap: 1rem;
-  align-items: center;
-  padding: 0.85rem;
-  border: 1px solid var(--tennis-line);
-  border-radius: 8px;
-  background: #fff;
-}
-
-.result-mini-card img {
-  width: 100%;
-  aspect-ratio: 1;
-  object-fit: contain;
-}
-
-.result-mini-card span {
-  color: var(--tennis-green);
-  font-size: 0.78rem;
-  font-weight: 900;
-}
-
-.result-mini-card strong {
-  display: block;
-  margin: 0.15rem 0 0.25rem;
-  font-size: clamp(1.15rem, 2vw, 1.6rem);
-  line-height: 1.05;
-}
-
-.result-mini-card p {
-  margin: 0;
-  color: var(--tennis-muted);
-  font-size: 0.92rem;
-  line-height: 1.45;
-}
-
-.tennis-service-strip {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1px;
-  width: min(90rem, 90vw);
-  margin: 0 auto clamp(4rem, 8vw, 7rem);
-  border: 1px solid var(--tennis-line);
-  border-radius: 8px;
-  background: var(--tennis-line);
-  overflow: hidden;
-}
-
-.tennis-service-strip div {
-  min-height: 13rem;
-  padding: clamp(1rem, 2.5vw, 1.6rem);
-  background: #fff;
-}
-
-.tennis-service-strip strong {
-  color: var(--tennis-blue);
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: 0.84rem;
-}
-
-.tennis-service-strip span {
-  display: block;
-  margin: 2.5rem 0 0.4rem;
-  color: var(--tennis-ink);
-  font-size: clamp(1.35rem, 2.4vw, 2.05rem);
-  font-weight: 900;
-  line-height: 1.05;
-}
-
-.tennis-service-strip p {
-  margin: 0;
-  color: var(--tennis-muted);
-}
-
-.tennis-section {
-  width: min(90rem, 90vw);
-  margin: 0 auto;
-  padding: clamp(4rem, 8vw, 7rem) 0;
-  border-top: 1px solid var(--tennis-line);
-}
-
-.tennis-how {
-  display: grid;
-  grid-template-columns: minmax(18rem, 0.78fr) minmax(0, 1.22fr);
-  gap: clamp(2rem, 6vw, 5rem);
-  align-items: start;
-}
-
-.tennis-section-heading {
-  max-width: 44rem;
-}
-
-.tennis-section-heading.compact {
-  max-width: 58rem;
-  margin-bottom: 2rem;
-}
-
-.tennis-section-heading h2 {
-  margin-bottom: 1rem;
-  color: var(--tennis-ink);
-  font-size: clamp(2.6rem, 5.5vw, 5.6rem);
-  line-height: 0.94;
-}
-
-.tennis-section-heading p {
-  margin: 0;
-  color: var(--tennis-muted);
-  font-size: clamp(1rem, 1.45vw, 1.18rem);
-  font-weight: 650;
-}
-
-.criteria-board {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
-}
-
-.criteria-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-height: 17rem;
-  padding: 1.2rem;
-  border-radius: 8px;
-  color: #fff;
-}
-
-.criteria-card span {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: 0.82rem;
-  font-weight: 900;
-  text-transform: uppercase;
-}
-
-.criteria-card strong {
-  max-width: 12rem;
-  font-size: clamp(1.35rem, 2.4vw, 2.2rem);
-  line-height: 1.02;
-}
-
-.criteria-card.control {
+.ecosystem-dot.available {
   background: var(--tennis-green);
 }
 
-.criteria-card.power {
-  background: #171d1a;
-}
-
-.criteria-card.spin {
+.ecosystem-dot.exploring {
   background: var(--tennis-purple);
 }
 
-.criteria-card.comfort {
+.ecosystem-lanes {
+  border-top: 2px solid var(--tennis-ink);
+}
+
+.ecosystem-lane {
+  display: grid;
+  grid-template-columns: minmax(10rem, 0.25fr) minmax(0, 0.75fr);
+  min-height: 14rem;
+  border-bottom: 1px solid var(--tennis-line);
+}
+
+.ecosystem-lane-label {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(1.1rem, 2.2vw, 1.5rem);
+  border-right: 1px solid var(--tennis-line);
+}
+
+.ecosystem-lane-label > span {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.78rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.ecosystem-lane-label h3 {
+  margin: auto 0 0;
+  font-size: clamp(2.2rem, 4vw, 4.8rem);
+  line-height: 0.9;
+}
+
+.ecosystem-lane.find .ecosystem-lane-label {
+  background: var(--tennis-lime);
+}
+
+.ecosystem-lane.learn .ecosystem-lane-label {
+  background: var(--tennis-purple);
+  color: #fff;
+}
+
+.ecosystem-lane.connect .ecosystem-lane-label {
   background: var(--tennis-blue);
+}
+
+.ecosystem-service-list {
+  display: grid;
+  background: rgba(255, 255, 255, 0.74);
+}
+
+.ecosystem-service-list.two-columns {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.ecosystem-service-list.three-columns {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.ecosystem-service-list.four-columns {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.ecosystem-service {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: clamp(1rem, 2.2vw, 1.5rem);
+  border-right: 1px solid var(--tennis-line);
+}
+
+.ecosystem-service:last-child {
+  border-right: 0;
+}
+
+.ecosystem-status {
+  color: var(--tennis-muted);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.72rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.ecosystem-service h4 {
+  margin: auto 0 0;
+  color: var(--tennis-ink);
+  font-size: clamp(1.55rem, 2.8vw, 3.2rem);
+  line-height: 0.95;
+}
+
+.ecosystem-service p {
+  min-height: 3em;
+  margin: 0;
+  color: var(--tennis-muted);
+  font-size: 0.9rem;
+  font-weight: 650;
+  line-height: 1.45;
+  word-break: keep-all;
+}
+
+.ecosystem-service small {
+  color: var(--tennis-muted);
+  font-size: 0.78rem;
+  font-weight: 850;
+}
+
+.ecosystem-service a {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0 0.9rem;
+  border-radius: 999px;
+  background: var(--tennis-ink);
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.ecosystem-service a:hover,
+.ecosystem-service a:focus-visible {
+  background: var(--tennis-green);
 }
 
 .service-carousel {
@@ -1450,15 +1280,6 @@ h2 {
     transform: none;
   }
 
-  .tennis-hero,
-  .tennis-how {
-    grid-template-columns: 1fr;
-  }
-
-  .tennis-hero {
-    min-height: auto;
-  }
-
   .service-carousel {
     width: 100%;
     margin-left: 0;
@@ -1520,15 +1341,6 @@ h2 {
   .gnb-menu:focus-within summary,
   .gnb-menu[open] summary {
     color: var(--tennis-ink);
-  }
-
-  .tennis-hero {
-    padding: 2.6rem 5vw 3rem;
-  }
-
-  .tennis-hero-copy h2 {
-    max-width: 10ch;
-    font-size: clamp(2.6rem, 9vw, 4rem);
   }
 
   .top-service-showcase {
@@ -1610,19 +1422,6 @@ h2 {
     font-size: 0.92rem;
     line-height: 1.55;
     word-break: keep-all;
-  }
-
-  .tennis-hero-visual {
-    min-height: 36rem;
-  }
-
-  .tennis-service-strip,
-  .criteria-board {
-    grid-template-columns: 1fr;
-  }
-
-  .criteria-card {
-    min-height: 14rem;
   }
 
   .service-carousel-track {
@@ -1719,11 +1518,45 @@ h2 {
     height: 2.5rem;
   }
 
-  .result-mini-card {
+  .tennis-ecosystem {
+    padding: 3rem 0;
+  }
+
+  .ecosystem-intro {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    align-items: start;
+    margin-bottom: 2.4rem;
+  }
+
+  .ecosystem-intro h2 {
+    font-size: clamp(3rem, 15vw, 4.4rem);
+  }
+
+  .ecosystem-lane {
     grid-template-columns: 1fr;
   }
 
-  .result-mini-card img {
-    max-width: 12rem;
+  .ecosystem-lane-label {
+    min-height: 8.5rem;
+    border-right: 0;
+    border-bottom: 1px solid var(--tennis-line);
   }
+
+  .ecosystem-service-list.two-columns,
+  .ecosystem-service-list.three-columns,
+  .ecosystem-service-list.four-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .ecosystem-service {
+    min-height: 11rem;
+    border-right: 0;
+    border-bottom: 1px solid var(--tennis-line);
+  }
+
+  .ecosystem-service:last-child {
+    border-bottom: 0;
+  }
+
 }
