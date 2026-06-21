@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ko">
+<html class="tennis-home-root" lang="ko">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,7 +17,8 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/app-icons/v2.0.0/fedshot911-apple-touch-icon-180-v2.0.0.png">
   <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#0b0d0f">
-  <link rel="stylesheet" href="/styles.v1.1.1.css?2606211949">
+  <link rel="preload" href="/assets/cursors/tennis-ball-cursor-v1.0.0_260621.png" as="image">
+  <link rel="stylesheet" href="/styles.v1.1.1.css?2606212009">
 </head>
 <body class="tennis-home-page">
   <header class="service-header tennis-header">
@@ -391,6 +392,8 @@
       let currentIndex = startIndex;
       let scrollTimer;
       let resetTimer;
+      let dragState = null;
+      let suppressClick = false;
 
       const normalizeIndex = (index) => {
         return ((index - startIndex) % originalCards.length + originalCards.length) % originalCards.length;
@@ -455,9 +458,81 @@
         recenterIfNeeded();
       };
 
+      const finishMouseDrag = (event, shouldSnap = true) => {
+        if (!dragState || event.pointerId !== dragState.pointerId) {
+          return;
+        }
+
+        const wasDragging = dragState.hasMoved;
+        dragState = null;
+        track.classList.remove("is-dragging");
+
+        if (track.hasPointerCapture(event.pointerId)) {
+          track.releasePointerCapture(event.pointerId);
+        }
+
+        if (wasDragging && shouldSnap) {
+          syncNearestCard();
+          scrollToCard(currentIndex, "smooth");
+        }
+
+        suppressClick = wasDragging;
+        window.setTimeout(() => {
+          suppressClick = false;
+        }, 0);
+      };
+
       previousButton.addEventListener("click", () => goToCard(currentIndex - 1));
       nextButton.addEventListener("click", () => goToCard(currentIndex + 1));
+      track.addEventListener("pointerdown", (event) => {
+        if (event.pointerType !== "mouse" || event.button !== 0) {
+          return;
+        }
+
+        window.clearTimeout(scrollTimer);
+        window.clearTimeout(resetTimer);
+        dragState = {
+          pointerId: event.pointerId,
+          startX: event.clientX,
+          startScrollLeft: track.scrollLeft,
+          hasMoved: false,
+        };
+        track.classList.add("is-dragging");
+        track.setPointerCapture(event.pointerId);
+      });
+      track.addEventListener("pointermove", (event) => {
+        if (!dragState || event.pointerId !== dragState.pointerId) {
+          return;
+        }
+
+        const distance = event.clientX - dragState.startX;
+        if (Math.abs(distance) > 5) {
+          dragState.hasMoved = true;
+        }
+
+        if (!dragState.hasMoved) {
+          return;
+        }
+
+        event.preventDefault();
+        track.scrollLeft = dragState.startScrollLeft - distance;
+      });
+      track.addEventListener("pointerup", (event) => finishMouseDrag(event));
+      track.addEventListener("pointercancel", (event) => finishMouseDrag(event, false));
+      track.addEventListener("dragstart", (event) => event.preventDefault());
+      track.addEventListener("click", (event) => {
+        if (!suppressClick) {
+          return;
+        }
+
+        event.preventDefault();
+        event.stopPropagation();
+      }, true);
       track.addEventListener("scroll", () => {
+        if (dragState) {
+          return;
+        }
+
         window.clearTimeout(scrollTimer);
         scrollTimer = window.setTimeout(syncNearestCard, 120);
       }, { passive: true });

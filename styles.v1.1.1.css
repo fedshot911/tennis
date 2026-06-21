@@ -590,8 +590,12 @@ h2 {
   }
 }
 
-.tennis-home-page {
+.tennis-home-root {
   --tennis-ball-cursor: url("/assets/cursors/tennis-ball-cursor-v1.0.0_260621.png") 16 16;
+  cursor: var(--tennis-ball-cursor), auto;
+}
+
+.tennis-home-page {
   --tennis-bg: #fbfff1;
   --tennis-ink: #101414;
   --tennis-muted: #53605c;
@@ -606,9 +610,10 @@ h2 {
     linear-gradient(180deg, #ffffff 0%, var(--tennis-bg) 50%, #ffffff 100%);
   background-size: 72px 72px, auto;
   color: var(--tennis-ink);
-  cursor: var(--tennis-ball-cursor), auto;
 }
 
+.tennis-home-root,
+.tennis-home-page,
 .tennis-home-page * {
   cursor: var(--tennis-ball-cursor), auto;
 }
@@ -1216,6 +1221,11 @@ h2 {
   display: none;
 }
 
+.service-carousel-track.is-dragging {
+  scroll-snap-type: none;
+  user-select: none;
+}
+
 .service-slide {
   position: relative;
   display: flex;
@@ -1236,6 +1246,7 @@ h2 {
     transform 360ms ease,
     opacity 360ms ease,
     box-shadow 360ms ease;
+  -webkit-user-drag: none;
 }
 
 .hero-carousel .service-slide {
@@ -1354,7 +1365,7 @@ h2 {
 
 .service-slide.is-current {
   z-index: 4;
-  box-shadow: 0 30px 90px rgba(16, 20, 20, 0.18);
+  box-shadow: none;
   transform: translateY(-1.45rem) rotate(-2.2deg) scale(1.035);
 }
 
