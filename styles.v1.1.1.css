@@ -1523,17 +1523,17 @@ h2 {
   }
 
   .tennis-hero {
-    padding: 3rem 5vw 3.5rem;
+    padding: 2.6rem 5vw 3rem;
   }
 
   .tennis-hero-copy h2 {
-    max-width: 8.8ch;
-    font-size: clamp(3.4rem, 16vw, 5.4rem);
+    max-width: 10ch;
+    font-size: clamp(2.6rem, 9vw, 4rem);
   }
 
   .top-service-showcase {
     min-height: auto;
-    padding: 2.4rem 0 3.2rem;
+    padding: 1.8rem 0 2.4rem;
   }
 
   .gnb-menu {
@@ -1600,14 +1600,14 @@ h2 {
 
   .showcase-heading h1 {
     max-width: 9.4ch;
-    font-size: clamp(3.3rem, 15vw, 5rem);
+    font-size: clamp(2.8rem, 9vw, 4rem);
     line-height: 0.95;
   }
 
   .showcase-heading p {
     max-width: 24rem;
     margin-left: 0;
-    font-size: 1rem;
+    font-size: 0.92rem;
     line-height: 1.55;
     word-break: keep-all;
   }
@@ -1627,9 +1627,9 @@ h2 {
 
   .service-carousel-track {
     align-items: stretch;
-    min-height: 29rem;
-    padding-top: 2.8rem;
-    padding-bottom: 1.4rem;
+    min-height: 25rem;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
     scroll-padding-inline: 5vw;
   }
 
@@ -1642,10 +1642,11 @@ h2 {
   .service-slide.rival,
   .service-slide.teaser.left,
   .service-slide.teaser.right {
-    flex-basis: min(84vw, 23rem);
-    min-height: 25.5rem;
+    flex-basis: min(78vw, 20rem);
+    min-height: 21.5rem;
     margin-left: 0;
     margin-right: 0;
+    padding: 1rem;
   }
 
   .service-slide > span {
@@ -1692,11 +1693,11 @@ h2 {
   }
 
   .service-slide h3 {
-    font-size: clamp(2.6rem, 14vw, 4.8rem);
+    font-size: clamp(2.2rem, 9vw, 3.8rem);
   }
 
   .service-slide p {
-    font-size: 1rem;
+    font-size: 0.92rem;
     line-height: 1.42;
   }
 
@@ -1709,7 +1710,13 @@ h2 {
   }
 
   .showcase-status {
-    min-width: 9.8rem;
+    min-width: 8.8rem;
+    font-size: 0.78rem;
+  }
+
+  .showcase-control-button {
+    width: 2.5rem;
+    height: 2.5rem;
   }
 
   .result-mini-card {
