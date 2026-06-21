@@ -490,11 +490,32 @@ h2 {
 
 .site-footer {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   gap: 1rem;
   padding: 2rem 5vw;
   color: var(--muted);
   font-size: 0.9rem;
+}
+
+.site-footer-brand {
+  display: inline-flex;
+  flex: 0 0 auto;
+}
+
+.site-footer-brand img {
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  object-fit: contain;
+}
+
+.site-footer-links {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.35rem;
+  flex-wrap: wrap;
 }
 
 .private-page {
@@ -547,8 +568,7 @@ h2 {
 
 @media (max-width: 860px) {
   .site-header,
-  .service-header,
-  .site-footer {
+  .service-header {
     align-items: flex-start;
     flex-direction: column;
     justify-content: center;
