@@ -1,6 +1,11 @@
 const QUIZ_ID = "racket_finder";
 const QUIZ_VERSION = "v1.1.0";
 const MAX_ANSWERS_JSON_LENGTH = 12000;
+const MAX_RESULT_SCORE = 10000;
+const MAX_ANSWER_COUNT = 20;
+const SAFE_ID_PATTERN = /^[a-z0-9]+(?:_[a-z0-9]+)*$/;
+const QUESTION_ID_PATTERN = /^q[0-9]+_[a-z0-9_]+$/;
+const IMAGE_VARIANTS = new Set(["male", "female"]);
 const SECURITY_HEADERS = {
   "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
   "X-Content-Type-Options": "nosniff",
@@ -15,14 +20,19 @@ export async function onRequestPost(context) {
       return jsonResponse({ ok: false, error: "D1 binding is not configured." }, 500);
     }
 
-    const payload = await context.request.json();
-    const validationError = validatePayload(payload);
+    const payload = await parseJsonPayload(context.request);
+    if (!payload.ok) {
+      return jsonResponse({ ok: false, error: payload.error }, 400);
+    }
+
+    const data = payload.data;
+    const validationError = validatePayload(data);
     if (validationError) {
       return jsonResponse({ ok: false, error: validationError }, 400);
     }
 
     const id = crypto.randomUUID();
-    const answersJson = JSON.stringify(payload.answers);
+    const answersJson = JSON.stringify(data.answers);
     if (answersJson.length > MAX_ANSWERS_JSON_LENGTH) {
       return jsonResponse({ ok: false, error: "Answers payload is too large." }, 413);
     }
@@ -42,9 +52,9 @@ export async function onRequestPost(context) {
       id,
       QUIZ_ID,
       QUIZ_VERSION,
-      payload.result_racket_id,
-      Number(payload.result_score || 0),
-      payload.image_variant || null,
+      data.result_racket_id,
+      normalizeResultScore(data.result_score),
+      data.image_variant || null,
       answersJson
     ).run();
 
@@ -54,24 +64,67 @@ export async function onRequestPost(context) {
   }
 }
 
+async function parseJsonPayload(request) {
+  try {
+    return { ok: true, data: await request.json() };
+  } catch (error) {
+    return { ok: false, error: "Invalid JSON payload." };
+  }
+}
+
 function validatePayload(payload) {
-  if (!payload || typeof payload !== "object") {
+  if (!isPlainObject(payload)) {
     return "Invalid JSON payload.";
   }
 
-  if (!isNonEmptyString(payload.result_racket_id)) {
+  if (!isSafeId(payload.result_racket_id)) {
     return "Missing result_racket_id.";
   }
 
-  if (!payload.answers || typeof payload.answers !== "object" || Array.isArray(payload.answers)) {
+  if (!isValidOptionalScore(payload.result_score)) {
+    return "Invalid result_score.";
+  }
+
+  if (payload.image_variant != null && !IMAGE_VARIANTS.has(payload.image_variant)) {
+    return "Invalid image_variant.";
+  }
+
+  if (!isPlainObject(payload.answers)) {
     return "Missing answers.";
+  }
+
+  const answerEntries = Object.entries(payload.answers);
+  if (answerEntries.length === 0 || answerEntries.length > MAX_ANSWER_COUNT) {
+    return "Invalid answers.";
+  }
+
+  for (const [questionId, answerId] of answerEntries) {
+    if (!QUESTION_ID_PATTERN.test(questionId) || !isSafeId(answerId)) {
+      return "Invalid answers.";
+    }
   }
 
   return "";
 }
 
-function isNonEmptyString(value) {
-  return typeof value === "string" && value.trim().length > 0;
+function isPlainObject(value) {
+  return value !== null && typeof value === "object" && !Array.isArray(value);
+}
+
+function isSafeId(value) {
+  return typeof value === "string" && value.length <= 80 && SAFE_ID_PATTERN.test(value);
+}
+
+function isValidOptionalScore(value) {
+  if (value == null) {
+    return true;
+  }
+
+  return typeof value === "number" && Number.isFinite(value) && Math.abs(value) <= MAX_RESULT_SCORE;
+}
+
+function normalizeResultScore(value) {
+  return value == null ? 0 : value;
 }
 
 function jsonResponse(body, status = 200) {

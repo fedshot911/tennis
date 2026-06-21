@@ -14,4 +14,5 @@ This folder is the separated Cloudflare Pages source for `tennis.fedshot911.com`
 
 - Create a separate Cloudflare Pages project for this folder.
 - Connect the custom domain `tennis.fedshot911.com` from the Pages project Custom domains tab.
-- If result saving/sharing must work in production, bind the same D1 database binding name: `RACKET_RESULTS_DB`.
+- Result saving/sharing uses the D1 database binding `RACKET_RESULTS_DB`.
+- Apply the schema in `migrations/0001_create_quiz_results.sql` to `fedshot911-racket-results` before enabling production writes.
