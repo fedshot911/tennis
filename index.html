@@ -17,7 +17,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/app-icons/v2.0.0/fedshot911-apple-touch-icon-180-v2.0.0.png">
   <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#0b0d0f">
-  <link rel="stylesheet" href="/styles.v1.1.1.css?2606211921">
+  <link rel="stylesheet" href="/styles.v1.1.1.css?2606211949">
 </head>
 <body class="tennis-home-page">
   <header class="service-header tennis-header">
@@ -25,7 +25,12 @@
       <img class="brand-mark" src="/assets/app-icons/v2.0.0/fedshot911-brand-mark-48-v2.0.0.png" alt="" aria-hidden="true">
       <img class="brand-wordmark" src="/assets/app-icons/v2.0.0/fedshot911-wordmark-v2.0.0.png" alt="fedshot911">
     </a>
-    <nav class="tennis-nav" aria-label="tennis service navigation">
+    <button class="mobile-menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="tennis-nav">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </button>
+    <nav class="tennis-nav" id="tennis-nav" aria-label="tennis service navigation">
       <details class="gnb-menu" name="tennis-gnb">
         <summary>Finder</summary>
         <div class="gnb-panel" aria-label="Finder menu">
@@ -213,9 +218,54 @@
   </footer>
   <script>
     (() => {
+      const header = document.querySelector(".tennis-header");
+      const nav = document.querySelector(".tennis-nav");
+      const menuToggle = document.querySelector(".mobile-menu-toggle");
       const menus = Array.from(document.querySelectorAll(".gnb-menu"));
       const hoverQuery = window.matchMedia("(hover: hover) and (pointer: fine) and (min-width: 701px)");
+      const mobileQuery = window.matchMedia("(max-width: 700px)");
       const closeTimers = new WeakMap();
+
+      const setMobileMenu = (isOpen) => {
+        if (!header || !nav || !menuToggle) {
+          return;
+        }
+
+        header.classList.toggle("is-menu-open", isOpen);
+        menuToggle.setAttribute("aria-expanded", String(isOpen));
+        menuToggle.setAttribute("aria-label", isOpen ? "메뉴 닫기" : "메뉴 열기");
+        nav.hidden = mobileQuery.matches && !isOpen;
+
+        if (!isOpen) {
+          menus.forEach((menu) => {
+            menu.open = false;
+          });
+        }
+      };
+
+      const syncMobileMenu = () => {
+        if (!nav || !mobileQuery.matches) {
+          if (nav) {
+            nav.hidden = false;
+          }
+          header?.classList.remove("is-menu-open");
+          menuToggle?.setAttribute("aria-expanded", "false");
+          menuToggle?.setAttribute("aria-label", "메뉴 열기");
+          return;
+        }
+
+        setMobileMenu(header?.classList.contains("is-menu-open") ?? false);
+      };
+
+      menuToggle?.addEventListener("click", () => {
+        setMobileMenu(!header?.classList.contains("is-menu-open"));
+      });
+
+      if (typeof mobileQuery.addEventListener === "function") {
+        mobileQuery.addEventListener("change", syncMobileMenu);
+      } else if (typeof mobileQuery.addListener === "function") {
+        mobileQuery.addListener(syncMobileMenu);
+      }
 
       const cancelClose = (menu) => {
         window.clearTimeout(closeTimers.get(menu));
@@ -270,7 +320,12 @@
       });
 
       document.addEventListener("click", (event) => {
-        if (event.target.closest(".tennis-nav")) {
+        if (event.target.closest(".tennis-nav, .mobile-menu-toggle")) {
+          return;
+        }
+
+        if (mobileQuery.matches) {
+          setMobileMenu(false);
           return;
         }
 
@@ -287,7 +342,22 @@
         menus.forEach((menu) => {
           menu.open = false;
         });
+
+        if (mobileQuery.matches) {
+          setMobileMenu(false);
+          menuToggle?.focus();
+        }
       });
+
+      nav?.addEventListener("click", (event) => {
+        if (!mobileQuery.matches || !event.target.closest("a")) {
+          return;
+        }
+
+        setMobileMenu(false);
+      });
+
+      syncMobileMenu();
     })();
 
     (() => {
