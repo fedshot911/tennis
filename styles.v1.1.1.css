@@ -896,7 +896,7 @@ h2 {
 
 .ecosystem-lane {
   display: grid;
-  grid-template-columns: minmax(10rem, 0.25fr) minmax(0, 0.75fr);
+  grid-template-columns: minmax(14rem, 0.3fr) minmax(0, 0.7fr);
   min-height: 14rem;
   border-bottom: 1px solid var(--tennis-line);
 }

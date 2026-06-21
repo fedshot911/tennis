@@ -1,6 +1,12 @@
 const QUIZ_ID = "racket_finder";
 const QUIZ_VERSION = "v1.1.0";
 const MAX_ANSWERS_JSON_LENGTH = 12000;
+const SECURITY_HEADERS = {
+  "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+  "X-Content-Type-Options": "nosniff",
+  "Referrer-Policy": "strict-origin-when-cross-origin",
+  "Permissions-Policy": "camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()"
+};
 
 export async function onRequestPost(context) {
   try {
@@ -72,6 +78,7 @@ function jsonResponse(body, status = 200) {
   return new Response(JSON.stringify(body), {
     status,
     headers: {
+      ...SECURITY_HEADERS,
       "content-type": "application/json; charset=utf-8",
       "cache-control": "no-store"
     }
