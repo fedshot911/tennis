@@ -356,7 +356,9 @@
         const clone = card.cloneNode(true);
         clone.setAttribute("aria-hidden", "true");
         clone.dataset.carouselClone = "true";
-        clone.removeAttribute("href");
+        if (clone.matches("a[href]")) {
+          clone.tabIndex = -1;
+        }
         clone.removeAttribute("data-service-card");
         return clone;
       };
