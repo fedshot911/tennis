@@ -471,6 +471,10 @@
           return;
         }
 
+        if (event.target.closest("a[href]")) {
+          return;
+        }
+
         window.clearTimeout(scrollTimer);
         window.clearTimeout(resetTimer);
         dragState = {
