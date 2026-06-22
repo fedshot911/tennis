@@ -486,7 +486,7 @@
         }
 
         const distance = event.clientX - dragState.startX;
-        if (Math.abs(distance) > 5) {
+        if (Math.abs(distance) > 12) {
           dragState.hasMoved = true;
         }
 
@@ -502,6 +502,10 @@
       track.addEventListener("dragstart", (event) => event.preventDefault());
       track.addEventListener("click", (event) => {
         if (!suppressClick) {
+          return;
+        }
+
+        if (event.target.closest("a[href]")) {
           return;
         }
 
