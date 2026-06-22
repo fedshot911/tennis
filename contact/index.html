@@ -7,7 +7,7 @@
   <meta name="description" content="fedshot911 tennis 문의 안내입니다.">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
-  <link rel="stylesheet" href="/styles.v1.1.1.css?2606222224">
+  <link rel="stylesheet" href="/styles.v1.1.1.css?2606222305">
   <link rel="stylesheet" href="/racket-finder/racket-finder.v1.1.6.css?260618">
 </head>
 <body>
@@ -22,16 +22,32 @@
     <section class="finder-hero" aria-labelledby="page-title">
       <div class="finder-copy">
         <p class="finder-kicker">Contact</p>
-        <h1 id="page-title">fedshot911 tennis 문의</h1>
+        <h1 id="page-title">Say hello.</h1>
         <p class="finder-lead">
-          라켓 파인더 결과 오류, 장비 데이터 수정, 협업 문의가 있으면 fedshot911 운영자에게 알려주세요.
+          라켓 파인더 결과 오류, 장비 데이터 수정, 협업 문의가 있으면 편하게 보내주세요.
         </p>
       </div>
       <div class="finder-intro-card">
-        <p class="intro-label">Email</p>
-        <h2>fedshot911@fedshot911.com</h2>
+        <p class="intro-label">Send a message</p>
+        <h2>Contact form</h2>
         <p>
-          답변이 필요한 내용은 메일 제목에 fedshot911 tennis를 포함해 보내주세요.
+          답변이 필요한 내용은 받을 수 있는 이메일 주소를 함께 남겨주세요.
+        </p>
+        <form class="contact-form" action="mailto:fedshot911@fedshot911.com" method="post" enctype="text/plain">
+          <label for="contact-name">Name</label>
+          <input id="contact-name" name="Name" type="text" autocomplete="name" required>
+
+          <label for="contact-email">Email</label>
+          <input id="contact-email" name="Email" type="email" autocomplete="email" required>
+
+          <label for="contact-message">Message</label>
+          <textarea id="contact-message" name="Message" rows="7" required></textarea>
+
+          <button class="button primary contact-submit" type="submit">Send message</button>
+        </form>
+        <p class="contact-direct">
+          Direct email:
+          <a class="contact-email-link" href="mailto:fedshot911@fedshot911.com">fedshot911@fedshot911.com</a>
         </p>
       </div>
     </section>
